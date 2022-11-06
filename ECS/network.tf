@@ -15,7 +15,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_internet_gateway" "internat-gateway" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-internet-gateway"
+    "Name" = "${var.project}-${var.enviroment}-internet-gateway"
   }
 }
 
@@ -52,17 +52,17 @@ resource "aws_route_table" "public-alb" {
 }
 
 resource "aws_route" "public-alb" {
-  route_table_id = aws_route_table.public-alb.id
-  gateway_id = aws_internet_gateway.internat-gateway.id
+  route_table_id         = aws_route_table.public-alb.id
+  gateway_id             = aws_internet_gateway.internat-gateway.id
   destination_cidr_block = "0.0.0.0/0"
 }
 
 resource "aws_route_table_association" "public-alb-1a" {
-  subnet_id = aws_subnet.public-alb-subnet-1a.id
+  subnet_id      = aws_subnet.public-alb-subnet-1a.id
   route_table_id = aws_route_table.public-alb.id
 }
 
 resource "aws_route_table_association" "public-alb-1c" {
-  subnet_id = aws_subnet.public-alb-subnet-1c.id
+  subnet_id      = aws_subnet.public-alb-subnet-1c.id
   route_table_id = aws_route_table.public-alb.id
 }
