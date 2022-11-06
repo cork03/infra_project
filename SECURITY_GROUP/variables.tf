@@ -4,19 +4,9 @@ variable "naem" {
 variable "vpc_id" {
   type = number
 }
-variable "description" {
-  type = string
-  default = "description"
-}
-variable "project" {
+variable "port" {
   type = string
 }
-variable "enviroment" {
-  type = string
-}
-variable "ingress" {
-  type = map
-}
-variable "egress" {
-  type = map
+variable "cidr_blocks" {
+  type = list(string)
 }
