@@ -8,7 +8,7 @@ resource "aws_security_group_rule" "ingress" {
   protocol                 = "tcp"
   from_port                = var.port
   to_port                  = var.port
-  cidr_blocks = [ var.cidr_blocks ]
+  cidr_blocks = var.cidr_blocks
   security_group_id        = aws_security_group.default.id
 }
 

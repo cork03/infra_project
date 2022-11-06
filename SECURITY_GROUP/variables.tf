@@ -1,8 +1,8 @@
-variable "naem" {
+variable "name" {
   type = string
 }
 variable "vpc_id" {
-  type = number
+  type = string
 }
 variable "port" {
   type = string
