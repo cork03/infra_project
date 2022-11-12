@@ -59,7 +59,7 @@ resource "aws_lb_target_group" "ecs-target" {
 
 resource "aws_lb_listener_rule" "ecs-listener-rule" {
   listener_arn = aws_lb_listener.http-listener.arn
-  priority = 100
+  priority     = 100
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ecs-target.arn
