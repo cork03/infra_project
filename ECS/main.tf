@@ -59,6 +59,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   container_definitions    = file("./container_definitions.json")
+  execution_role_arn       = module.ecs_task_excution_role.iam_role_arn
 }
 
 module "nginx_sg" {
