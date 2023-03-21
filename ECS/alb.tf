@@ -23,6 +23,9 @@ resource "aws_lb" "alb" {
   ]
 }
 
+####################################
+# ALB listeners
+####################################
 resource "aws_lb_listener" "http-listener" {
   load_balancer_arn = aws_lb.alb.arn
   port              = "80"
@@ -37,6 +40,9 @@ resource "aws_lb_listener" "http-listener" {
   }
 }
 
+####################################
+# target_group
+####################################
 resource "aws_lb_target_group" "ecs-target" {
   name        = "${var.project}-${var.enviroment}-target-group"
   target_type = "ip"
@@ -77,7 +83,9 @@ resource "aws_lb_listener_rule" "ecs-listener-rule" {
   }
 }
 
-
+####################################
+# security_groups
+####################################
 module "http_sg" {
   source      = "../security_group"
   name        = "http_sg"
