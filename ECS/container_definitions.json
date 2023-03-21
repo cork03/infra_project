@@ -1,7 +1,7 @@
 [
   {
     "name": "example",
-    "image" : "nginx:latest",
+    "image" : "nginx:1.22-alpine",
     "cpu" : 256,
     "memory" : 512,
     "essential" : true,

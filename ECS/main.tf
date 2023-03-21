@@ -47,6 +47,7 @@ resource "aws_ecs_service" "ecs-service" {
     container_port   = 80
   }
 
+  # plan時に毎回差分が出てしまうためignoreする
   lifecycle {
     ignore_changes = [task_definition]
   }

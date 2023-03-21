@@ -11,6 +11,11 @@ resource "aws_lb" "alb" {
     aws_subnet.public-alb-subnet-1c.id
   ]
 
+  access_logs {
+    bucket = aws_s3_bucket_policy.alb_log.id
+    enabled = true
+  }
+
   security_groups = [
     module.http_sg.security_group_id,
     module.https_sg.security_group_id,
