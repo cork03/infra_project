@@ -1,7 +1,7 @@
 [
   {
     "name": "example",
-    "image" : "nginx:1.22-alpine",
+    "image" : "463196187961.dkr.ecr.ap-northeast-1.amazonaws.com/infra_pj_nginx:latest",
     "cpu" : 256,
     "memory" : 512,
     "essential" : true,

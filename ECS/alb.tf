@@ -12,7 +12,7 @@ resource "aws_lb" "alb" {
   ]
 
   access_logs {
-    bucket = aws_s3_bucket_policy.alb_log.id
+    bucket  = aws_s3_bucket_policy.alb_log.id
     enabled = true
   }
 

@@ -6,7 +6,7 @@ data "aws_iam_policy_document" "ecs_task_excution" {
   source_policy_documents = [data.aws_iam_policy.ecs_task_excution_role_policy.policy]
   statement {
     effect    = "Allow"
-    actions   = ["ssm:GetParameters", "kms:Decrypt"]
+    actions   = ["ssm:GetParameters", "kms:Decrypt", "secretsmanager:GetSecretValue"]
     resources = ["*"]
   }
 }

@@ -53,6 +53,9 @@ resource "aws_ecs_service" "ecs-service" {
   }
 }
 
+####################################
+# タスク定義
+####################################
 resource "aws_ecs_task_definition" "ecs_task" {
   family                   = "${var.project}-${var.enviroment}-ecs-task"
   cpu                      = 256
