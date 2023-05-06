@@ -1,22 +1,22 @@
 resource "aws_security_group" "app_sg" {
-  name        = "${var.project}-${var.enviroment}-app-sg"
+  name        = "${local.project}-${local.env}-app-sg"
   vpc_id      = aws_vpc.vpc.id
   description = "app-sg"
   tags = {
-    "Name"       = "${var.project}-${var.enviroment}-app-sg"
-    "Project"    = var.project
-    "Enviroment" = var.enviroment
+    "Name"       = "${local.project}-${local.env}-app-sg"
+    "Project"    = local.project
+    "Enviroment" = local.env
   }
 }
 
 resource "aws_security_group" "db_sg" {
-  name        = "${var.project}-${var.enviroment}-db-sg"
+  name        = "${local.project}-${local.env}-db-sg"
   vpc_id      = aws_vpc.vpc.id
   description = "db-sg"
   tags = {
-    "Name"       = "${var.project}-${var.enviroment}-db-sg"
-    "Project"    = var.project
-    "Enviroment" = var.enviroment
+    "Name"       = "${local.project}-${local.env}-db-sg"
+    "Project"    = local.project
+    "Enviroment" = local.env
   }
 }
 
@@ -30,13 +30,13 @@ resource "aws_security_group_rule" "db-sg-rule" {
 }
 
 resource "aws_security_group" "elasticache_sg" {
-  name        = "${var.project}-${var.enviroment}-elasticache-sg"
+  name        = "${local.project}-${local.env}-elasticache-sg"
   vpc_id      = aws_vpc.vpc.id
   description = "elasticache-sg"
   tags = {
-    "Name"       = "${var.project}-${var.enviroment}-elasticache-sg"
-    "Project"    = var.project
-    "Enviroment" = var.enviroment
+    "Name"       = "${local.project}-${local.env}-elasticache-sg"
+    "Project"    = local.project
+    "Enviroment" = local.env
   }
 }
 

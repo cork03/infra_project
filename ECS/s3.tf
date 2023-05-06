@@ -2,7 +2,7 @@
 # alb_log bucket
 #################
 resource "aws_s3_bucket" "alb_log" {
-  bucket        = "${var.project}-${var.enviroment}-alb-log"
+  bucket        = "${local.project}-${local.env}-alb-log"
   force_destroy = true
 }
 

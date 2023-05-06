@@ -1,5 +1,5 @@
 resource "aws_elasticache_parameter_group" "elasticache_parameter_group" {
-  name   = "${var.project}-${var.enviroment}-elasticache-parameter-group"
+  name   = "${local.project}-${local.env}-elasticache-parameter-group"
   family = "redis5.0"
 
   parameter {
@@ -9,7 +9,7 @@ resource "aws_elasticache_parameter_group" "elasticache_parameter_group" {
 }
 
 resource "aws_elasticache_subnet_group" "elasticache_subnet_group" {
-  name = "${var.project}-${var.enviroment}-elasticache-subnet-group"
+  name = "${local.project}-${local.env}-elasticache-subnet-group"
   subnet_ids = [
     aws_subnet.private-rds-subnet-1a.id,
     aws_subnet.private-rds-subnet-1c.id
@@ -17,7 +17,7 @@ resource "aws_elasticache_subnet_group" "elasticache_subnet_group" {
 }
 
 resource "aws_elasticache_replication_group" "elasticache_replication_group" {
-  replication_group_id     = "${var.project}-${var.enviroment}-elasticache"
+  replication_group_id     = "${local.project}-${local.env}-elasticache"
   description = "redis"
   engine                   = "redis"
   engine_version           = "5.0.4"

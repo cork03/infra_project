@@ -1,5 +1,5 @@
 resource "aws_lb" "alb" {
-  name               = "${var.project}-${var.enviroment}-alb"
+  name               = "${local.project}-${local.env}-alb"
   load_balancer_type = "application"
   internal           = false
   idle_timeout       = 60
@@ -44,7 +44,7 @@ resource "aws_lb_listener" "http-listener" {
 # target_group
 ####################################
 resource "aws_lb_target_group" "ecs-target" {
-  name        = "${var.project}-${var.enviroment}-target-group"
+  name        = "${local.project}-${local.env}-target-group"
   target_type = "ip"
   vpc_id      = aws_vpc.vpc.id
   port        = 80

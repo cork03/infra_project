@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
-  name = "${var.project}-${var.enviroment}-ecs-cluster"
+  name = "${local.project}-${local.env}-ecs-cluster"
   #  cludewatch設定
   setting {
     name  = "containerInsights"
@@ -23,7 +23,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
 }
 
 resource "aws_ecs_service" "ecs-service" {
-  name            = "${var.project}-${var.enviroment}-ecs-sercvice"
+  name            = "${local.project}-${local.env}-ecs-sercvice"
   cluster         = aws_ecs_cluster.ecs-cluster.id
   task_definition = aws_ecs_task_definition.ecs_task.arn
   # 維持するタスク数
@@ -57,7 +57,7 @@ resource "aws_ecs_service" "ecs-service" {
 # タスク定義
 ####################################
 resource "aws_ecs_task_definition" "ecs_task" {
-  family                   = "${var.project}-${var.enviroment}-ecs-task"
+  family                   = "${local.project}-${local.env}-ecs-task"
   cpu                      = 256
   memory                   = 512
   network_mode             = "awsvpc"

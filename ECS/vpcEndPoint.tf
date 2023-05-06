@@ -1,6 +1,6 @@
 resource "aws_vpc_endpoint" "s3" {
   vpc_id       = aws_vpc.vpc.id
-  service_name = "com.amazonaws.${var.region}.s3"
+  service_name = "com.amazonaws.${local.region}.s3"
   vpc_endpoint_type = "Gateway"
   route_table_ids = [
     aws_route_table.private-ecs-1a.id,
@@ -10,7 +10,7 @@ resource "aws_vpc_endpoint" "s3" {
 
 resource "aws_vpc_endpoint" "ecr-dkr" {
   vpc_id       = aws_vpc.vpc.id
-  service_name = "com.amazonaws.${var.region}.ecr.dkr"
+  service_name = "com.amazonaws.${local.region}.ecr.dkr"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   subnet_ids = [
@@ -22,7 +22,7 @@ resource "aws_vpc_endpoint" "ecr-dkr" {
 
 resource "aws_vpc_endpoint" "ecr-api" {
   vpc_id       = aws_vpc.vpc.id
-  service_name = "com.amazonaws.${var.region}.ecr.api"
+  service_name = "com.amazonaws.${local.region}.ecr.api"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   subnet_ids = [
@@ -34,7 +34,7 @@ resource "aws_vpc_endpoint" "ecr-api" {
 
 resource "aws_vpc_endpoint" "secretsmanager" {
   vpc_id       = aws_vpc.vpc.id
-  service_name = "com.amazonaws.${var.region}.secretsmanager"
+  service_name = "com.amazonaws.${local.region}.secretsmanager"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   subnet_ids = [
@@ -46,7 +46,7 @@ resource "aws_vpc_endpoint" "secretsmanager" {
 
 # resource "aws_vpc_endpoint" "ssm" {
 #   vpc_id       = aws_vpc.vpc.id
-#   service_name = "com.amazonaws.${var.region}.ssm"
+#   service_name = "com.amazonaws.${local.region}.ssm"
 #   vpc_endpoint_type = "Interface"
 #   private_dns_enabled = true
 #    subnet_ids = [
@@ -58,7 +58,7 @@ resource "aws_vpc_endpoint" "secretsmanager" {
 
 resource "aws_vpc_endpoint" "logs" {
   vpc_id       = aws_vpc.vpc.id
-  service_name = "com.amazonaws.${var.region}.logs"
+  service_name = "com.amazonaws.${local.region}.logs"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
    subnet_ids = [

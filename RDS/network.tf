@@ -6,9 +6,9 @@ resource "aws_vpc" "vpc" {
   assign_generated_ipv6_cidr_block = false
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}"
+    "Project" = local.project
+    "Env"     = local.env
   }
 }
 
@@ -19,9 +19,9 @@ resource "aws_subnet" "private-rds-subnet-1a" {
   map_public_ip_on_launch = false
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-private-subnet-1a"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}-private-subnet-1a"
+    "Project" = local.project
+    "Env"     = local.env
     "Type"    = "private"
   }
 }
@@ -33,9 +33,9 @@ resource "aws_subnet" "private-rds-subnet-1c" {
   map_public_ip_on_launch = false
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-private-subnet-1c"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}-private-subnet-1c"
+    "Project" = local.project
+    "Env"     = local.env
     "Type"    = "private"
   }
 }

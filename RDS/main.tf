@@ -13,19 +13,14 @@ provider "aws" {
   region  = "ap-northeast-1"
 }
 
-variable "project" {
-  type    = string
-  default = "project"
-}
-
-variable "enviroment" {
-  type    = string
-  default = "dev"
-}
+locals  {
+  project = "infra"
+  env = "dev"
+ }
 
 # DBのconf設定の役割
 resource "aws_db_parameter_group" "mysql_parameter_group" {
-  name   = "${var.project}-${var.enviroment}-mysql-parameter-group"
+  name   = "${local.project}-${local.env}-mysql-parameter-group"
   family = "mysql8.0"
 
   parameter {
@@ -41,14 +36,14 @@ resource "aws_db_parameter_group" "mysql_parameter_group" {
 
 # DBエンジンの設定
 resource "aws_db_option_group" "mysql_option_group" {
-  name                 = "${var.project}-${var.enviroment}-mysql-option-group"
+  name                 = "${local.project}-${local.env}-mysql-option-group"
   engine_name          = "mysql"
   major_engine_version = "8.0"
 }
 
 # RDSのサブネット設定
 resource "aws_db_subnet_group" "mysql_subnet_group" {
-  name = "${var.project}-${var.enviroment}-mysql-subnet-group"
+  name = "${local.project}-${local.env}-mysql-subnet-group"
   # マルチAZ用に複数指定
   subnet_ids = [
     aws_subnet.private-rds-subnet-1a.id,
@@ -63,7 +58,7 @@ resource "random_string" "db_password" {
 }
 
 resource "aws_db_instance" "db_instance" {
-  identifier     = "${var.project}-${var.enviroment}-rds"
+  identifier     = "${local.project}-${local.env}-rds"
   engine         = "mysql"
   engine_version = "8.0"
   # user設定
@@ -99,9 +94,9 @@ resource "aws_db_instance" "db_instance" {
   apply_immediately = true
 
   tags = {
-    "Name"       = "${var.project}-${var.enviroment}-rds-mysql"
-    "Project"    = var.project
-    "Enviroment" = var.enviroment
+    "Name"       = "${local.project}-${local.env}-rds-mysql"
+    "Project"    = local.project
+    "Enviroment" = local.env
   }
 }
 

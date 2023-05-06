@@ -6,16 +6,16 @@ resource "aws_vpc" "vpc" {
   assign_generated_ipv6_cidr_block = false
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}"
+    "Project" = local.project
+    "Env"     = local.env
   }
 }
 
 resource "aws_internet_gateway" "internet-gateway" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    "Name" = "${var.project}-${var.enviroment}-internet-gateway"
+    "Name" = "${local.project}-${local.env}-internet-gateway"
   }
 }
 
@@ -29,9 +29,9 @@ resource "aws_subnet" "public-alb-subnet-1a" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-public-alb-subnet-1a"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}-public-alb-subnet-1a"
+    "Project" = local.project
+    "Env"     = local.env
     "Type"    = "public"
   }
 }
@@ -43,9 +43,9 @@ resource "aws_subnet" "public-alb-subnet-1c" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-public-alb-subnet-1c"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}-public-alb-subnet-1c"
+    "Project" = local.project
+    "Env"     = local.env
     "Type"    = "public"
   }
 }
@@ -84,9 +84,9 @@ resource "aws_subnet" "private-ecs-subnet-1a" {
   map_public_ip_on_launch = false
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-private-ecs-subnet-1a"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}-private-ecs-subnet-1a"
+    "Project" = local.project
+    "Env"     = local.env
     "Type"    = "private"
   }
 }
@@ -109,9 +109,9 @@ resource "aws_subnet" "private-ecs-subnet-1c" {
   map_public_ip_on_launch = false
 
   tags = {
-    "Name"    = "${var.project}-${var.enviroment}-privatec-ecs-subnet-1c"
-    "Project" = var.project
-    "Env"     = var.enviroment
+    "Name"    = "${local.project}-${local.env}-privatec-ecs-subnet-1c"
+    "Project" = local.project
+    "Env"     = local.env
     "Type"    = "private"
   }
 }
