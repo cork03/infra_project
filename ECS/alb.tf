@@ -40,6 +40,37 @@ resource "aws_lb_listener" "http-listener" {
   }
 }
 
+resource "aws_lb_listener" "https-listener" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn = aws_acm_certificate.infrapj.arn
+
+  default_action {
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "これは「HTTPS通信」です。"
+      status_code  = "200"
+    }
+  }
+}
+
+resource "aws_lb_listener" "https-redirect-listener" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "8080"
+  protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+    redirect {
+      port = "443"
+      protocol = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
 ####################################
 # target_group
 ####################################
@@ -68,8 +99,9 @@ resource "aws_lb_target_group" "ecs-target" {
   ]
 }
 
+# listenerとターゲットグループの紐付け(というか解釈？)
 resource "aws_lb_listener_rule" "ecs-listener-rule" {
-  listener_arn = aws_lb_listener.http-listener.arn
+  listener_arn = aws_lb_listener.https-listener.arn
   priority     = 100
   action {
     type             = "forward"
