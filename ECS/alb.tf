@@ -69,6 +69,8 @@ resource "aws_lb_listener" "https-redirect-listener" {
       status_code = "HTTP_301"
     }
   }
+
+  depends_on = [ aws_acm_certificate_validation.validation ]
 }
 
 ####################################
